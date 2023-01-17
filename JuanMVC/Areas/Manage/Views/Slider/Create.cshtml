@@ -1,0 +1,49 @@
+﻿@model Slider
+<div class="container mt-5">
+    <div class="row">
+        <form method="post" asp-controller="slider" asp-action="create" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-3">
+                    <label asp-for="TagName" class="form-label">TagName</label>
+                    <input asp-for="TagName" class="form-control" placeholder="TagName" />
+                    <span asp-validation-for="TagName" class="text-danger"></span>
+                </div>
+                <div class="col-3">
+                    <label asp-for="Title" class="form-label">Title</label>
+                    <input asp-for="Title" class="form-control" placeholder="Title" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+
+                </div>
+                <div class="col-3">
+                    <label asp-for="RedirectText" class="form-label">RedirectText</label>
+                    <input asp-for="RedirectText" class="form-control" placeholder="RedirectText">
+                    <span asp-validation-for="RedirectText" class="text-danger"></span>
+
+                </div>
+                <div class="col-3">
+                    <label asp-for="RedirectUrl" class="form-label">RedirectUrl</label>
+                    <input asp-for="RedirectUrl" class="form-control" placeholder="RedirectUrl">
+                    <span asp-validation-for="RedirectUrl" class="text-danger"></span>
+
+                </div>
+            </div>
+
+          <div class="row">
+            <div class="mb-3 col-4">
+                    <label asp-for="ImgFile" class="form-label">ImgFile"</label>
+                    <input asp-for="ImgFile" class="form-control"/>
+                    <span asp-validation-for="ImgFile" class="text-danger"></span>
+
+            </div>
+                <div class="mb-3 col-8">
+                <label asp-for="Description" class="form-label">Description"</label>
+                <textarea asp-for="Description" class="form-control" placeholder="Description"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+
+            </div>
+          </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿@model List<BannerProduct>
+@{
+    int count = 0;
+}
+<div class="container mt-5">
+    <div class="row d-flex justify-content-between">
+        <div>
+            Create a new Bannerproduct
+        </div>
+        <div>
+            <a asp-controller="bannerproduct" asp-action="create" class="btn btn-success">+ Add</a>
+        </div>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Update or delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (BannerProduct bannerProduct in Model)
+                {
+                    count++;
+                    <tr>
+                        <th scope="row">@count</th>
+                        <td>@bannerProduct.Title</td>
+                        <td><img src="~/uploads/bannerproducts/@bannerProduct.ImgUrl" /></td>
+                        <td>
+                            <a asp-controller="bannerproduct" asp-action="update" asp-route-id="@bannerProduct.Id" class="btn btn-primary">Update</a>
+                            <a asp-controller="bannerproduct" asp-action="delete" asp-route-id="@bannerProduct.Id" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
