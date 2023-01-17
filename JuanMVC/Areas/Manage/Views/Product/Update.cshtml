@@ -1,7 +1,7 @@
 ﻿@model Product
 <div class="container mt-5">
     <div class="row">
-        <form method="post" asp-controller="product" asp-action="create" enctype="multipart/form-data">
+        <form method="post" asp-controller="product" asp-action="update" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-3">
                     <label asp-for="Name" class="form-label">Name</label>
@@ -28,22 +28,22 @@
                     <input asp-for="Discount" class="form-control" placeholder="Discount" />
                     <span asp-validation-for="Discount" class="text-danger"></span>
                 </div>
-            
+
             </div>
 
-          <div class="row">
+            <div class="row">
                 <div class="mb-3 col-10">
-                <label asp-for="Description" class="form-label">Description"</label>
-                <textarea asp-for="Description" class="form-control" placeholder="Description"></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="mb-3 col-2 d-flex align-items-center">
+                    <label asp-for="Description" class="form-label">Description"</label>
+                    <textarea asp-for="Description" class="form-control" placeholder="Description"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="mb-3 col-2 d-flex align-items-center">
                     <label asp-for="IsAvaible" class="form-label">IsAvaible</label>
-                    <input asp-for="IsAvaible" class="form-control"/>
+                    <input asp-for="IsAvaible" class="form-control" />
                     <span asp-validation-for="IsAvaible" class="text-danger"></span>
+                </div>
             </div>
-          </div>
-          <div class="row">
+            <div class="row">
                 <div class="col-6">
                     <label asp-for="PosterImgFile" class="form-label">PosterImgFile</label>
                     <input asp-for="PosterImgFile" class="form-control" />
@@ -54,7 +54,7 @@
                     <input asp-for="ProductImageFiles" multiple class="form-control" />
                     <span asp-validation-for="ProductImageFiles" class="text-danger"></span>
                 </div>
-          </div>
+            </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>

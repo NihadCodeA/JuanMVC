@@ -1,8 +1,11 @@
-﻿using JuanMVC.Models;
+﻿using JuanMVC.Helpers;
+using JuanMVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace JuanMVC.Areas.Manage.Controllers
 {
+    [Area("Manage")]
     public class ProductController : Controller
     {
         private readonly JuanDb _context;
@@ -15,7 +18,8 @@ namespace JuanMVC.Areas.Manage.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            List<Product> products=_context.Products.Include(x=>x.ProductImages).ToList();
+            return View(products);
         }
         [HttpGet]
         public IActionResult Create()
@@ -34,23 +38,101 @@ namespace JuanMVC.Areas.Manage.Controllers
             }
             else
             {
-                
+                ProductImage posterImage = new ProductImage
+                {
+                    Product = product,
+                    ImageUrl = FileManager.SaveFile(_env.WebRootPath, "uploads/productimages", product.PosterImgFile),
+                    IsPoster = true
+                };
+                _context.ProductImages.Add(posterImage);
             }
             if (product.ProductImageFiles== null)
             {
                 ModelState.AddModelError("ProductImageFiles", "Sekil yuklemeden product yarada bilmersiz!");
             }
             else{
-                foreach (ProductImage productImage in product.ProductImageFiles)
+                foreach (var productImage in product.ProductImageFiles)
                 {
-
-                }
-            }
+                    ProductImage productImg = new ProductImage
+                    {
+                        Product= product,
+                        ImageUrl=FileManager.SaveFile(_env.WebRootPath, "uploads/productimages", productImage),
+                        IsPoster=false
+                    };
+					_context.ProductImages.Add(productImg);
+				}
+			}
             _context.Products.Add(product);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
 
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            Product product = _context.Products.FirstOrDefault(x => x.Id == id);
+            if (product == null) return NotFound();
+            return View(product);
+        }
+        [HttpPost]
+        public IActionResult Update(Product product)
+        {
+            Product existProduct=_context.Products.Include(x=>x.ProductImages).FirstOrDefault(x=>x.Id==product.Id);
+            if (existProduct == null) return NotFound();
+            if (!ModelState.IsValid) return View();
+
+            if (product.PosterImgFile == null)
+            {
+                ModelState.AddModelError("PosterImgFile", "Sekil yuklemeden product yarada bilmersiz!");
+            }
+            else
+            {
+                ProductImage posterImage = new ProductImage
+                {
+                    Product = product,
+                    ImageUrl = FileManager.SaveFile(_env.WebRootPath, "uploads/productimages", product.PosterImgFile),
+                    IsPoster = true
+                };
+                existProduct.ProductImages.FirstOrDefault(x => x.IsPoster == true).ImageUrl = posterImage.ImageUrl;
+
+            }
+            if (product.ProductImageFiles == null)
+            {
+                ModelState.AddModelError("ProductImageFiles", "Sekil yuklemeden product yarada bilmersiz!");
+            }
+            else
+            {
+                foreach (var productImage in product.ProductImageFiles)
+                {
+                    ProductImage productImg = new ProductImage
+                    {
+                        Product = product,
+                        ImageUrl = FileManager.SaveFile(_env.WebRootPath, "uploads/productimages", productImage),
+                        IsPoster = false
+                    };
+                    existProduct.ProductImages.FirstOrDefault(x => x.IsPoster == false).ImageUrl = productImg.ImageUrl;
+                }
+            }
+            existProduct.Name= product.Name;
+            existProduct.Title = product.Title;
+            existProduct.CostPrice = product.CostPrice;
+            existProduct.SalePrice = product.SalePrice;
+            existProduct.Discount = product.Discount;
+            existProduct.IsAvaible = product.IsAvaible;
+            existProduct.Description= product.Description;
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            Product product = _context.Products.FirstOrDefault(x => x.Id == id);
+            if (product == null) return NotFound();
+            
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -1,0 +1,51 @@
+﻿@model List<Product>
+@{
+    int count = 0;
+}
+<div class="container mt-5">
+    <div class="row d-flex justify-content-between">
+        <div>
+            Create a new product
+        </div>
+        <div>
+            <a asp-controller="product" asp-action="create" class="btn btn-success">+ Add</a>
+        </div>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">CostPrice</th>
+                    <th scope="col">SalePrice</th>
+                    <th scope="col">Discount</th>
+                    <th scope="col">IsAvaible</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Update or delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Product product in Model)
+                {
+                    count++;
+                    <tr>
+                        <th scope="row">@count</th>
+                        <td>@product.Name</td>
+                        <td>@product.Title</td>
+                        <td>@product.CostPrice</td>
+                        <td>@product.SalePrice</td>
+                        <td>@product.Discount</td>
+                        <td>@product.IsAvaible</td>
+                        <td><img style="max-width:150px;max-height:150px;" src="~/uploads/productimages/@product.ProductImages.FirstOrDefault(x=>x.IsPoster==true)?.ImageUrl" /></td>
+                        <td>
+                            <a asp-controller="product" asp-action="update" asp-route-id="@product.Id" class="btn btn-primary">Update</a>
+                            <a asp-controller="product" asp-action="delete" asp-route-id="@product.Id" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
