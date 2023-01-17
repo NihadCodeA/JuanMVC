@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "U2kwO+j6RiI3X1Fen8mSG97kIO1Frk1ZrD011QbvODE=",
+  "Hash": "QqO6dw3Mem3NBRrE48oEufsxV/qmC7DuqbJuIf1usJQ=",
   "Source": "JuanMVC",
   "BasePath": "_content/JuanMVC",
   "Mode": "Default",
@@ -33250,6 +33250,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\sliders\\656df48a-a1be-49ca-aefa-f1b2564bdf6ebanner_left.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\ca.r214.14\\Desktop\\JuanMVC\\JuanMVC\\wwwroot\\uploads\\sliders\\6c53fb3f-e2ae-4677-a3cc-aef53ebcc0a6banner_left.jpg",
+      "SourceId": "JuanMVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ca.r214.14\\Desktop\\JuanMVC\\JuanMVC\\wwwroot\\",
+      "BasePath": "_content/JuanMVC",
+      "RelativePath": "uploads/sliders/6c53fb3f-e2ae-4677-a3cc-aef53ebcc0a6banner_left.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\sliders\\6c53fb3f-e2ae-4677-a3cc-aef53ebcc0a6banner_left.jpg"
     },
     {
       "Identity": "C:\\Users\\ca.r214.14\\Desktop\\JuanMVC\\JuanMVC\\wwwroot\\uploads\\sliders\\700478437d84432d9c8c20017e0b536ccart-2.jpg",

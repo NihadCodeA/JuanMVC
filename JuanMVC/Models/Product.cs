@@ -13,9 +13,10 @@ namespace JuanMVC.Models
         public double Discount { get; set; }
         public bool IsAvaible { get; set; }
 
+        public string? PosterImgUrl { get; set; }
         [NotMapped]
         public IFormFile? PosterImgFile { get; set; }
-        public List<ProductImages>? ProductImages { get; set; }
+        public List<ProductImage>? ProductImages { get; set; }
         [NotMapped]
         public List<IFormFile>? ProductImageFiles { get; set; }
     }

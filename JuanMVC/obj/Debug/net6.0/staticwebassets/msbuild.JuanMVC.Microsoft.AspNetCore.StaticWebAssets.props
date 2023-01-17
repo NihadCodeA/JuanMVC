@@ -31264,6 +31264,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\sliders\656df48a-a1be-49ca-aefa-f1b2564bdf6ebanner_left.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\sliders\6c53fb3f-e2ae-4677-a3cc-aef53ebcc0a6banner_left.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>JuanMVC</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/JuanMVC</BasePath>
+      <RelativePath>uploads/sliders/6c53fb3f-e2ae-4677-a3cc-aef53ebcc0a6banner_left.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\sliders\6c53fb3f-e2ae-4677-a3cc-aef53ebcc0a6banner_left.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\sliders\700478437d84432d9c8c20017e0b536ccart-2.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>JuanMVC</SourceId>

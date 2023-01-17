@@ -9,6 +9,8 @@ namespace JuanMVC.Models
 
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<BannerProduct> BannerProducts { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
 
     }
 }

@@ -3,6 +3,7 @@ using JuanMVC.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JuanMVC.Migrations
 {
     [DbContext(typeof(JuanDb))]
-    partial class JuanDbModelSnapshot : ModelSnapshot
+    [Migration("20230117094020_UpdatedProductTable3")]
+    partial class UpdatedProductTable3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

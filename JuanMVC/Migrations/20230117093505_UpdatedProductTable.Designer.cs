@@ -3,6 +3,7 @@ using JuanMVC.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JuanMVC.Migrations
 {
     [DbContext(typeof(JuanDb))]
-    partial class JuanDbModelSnapshot : ModelSnapshot
+    [Migration("20230117093505_UpdatedProductTable")]
+    partial class UpdatedProductTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,70 +47,6 @@ namespace JuanMVC.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BannerProducts");
-                });
-
-            modelBuilder.Entity("JuanMVC.Models.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<double>("CostPrice")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Discount")
-                        .HasColumnType("float");
-
-                    b.Property<bool>("IsAvaible")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PosterImgUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("SalePrice")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("JuanMVC.Models.ProductImages", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsPoster")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("JuanMVC.Models.Slider", b =>
@@ -149,22 +87,6 @@ namespace JuanMVC.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sliders");
-                });
-
-            modelBuilder.Entity("JuanMVC.Models.ProductImages", b =>
-                {
-                    b.HasOne("JuanMVC.Models.Product", "Product")
-                        .WithMany("ProductImages")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("JuanMVC.Models.Product", b =>
-                {
-                    b.Navigation("ProductImages");
                 });
 #pragma warning restore 612, 618
         }
