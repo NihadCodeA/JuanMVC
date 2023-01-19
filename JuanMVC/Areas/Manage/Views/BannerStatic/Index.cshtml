@@ -1,0 +1,45 @@
+﻿@model List<BannerStatic>
+@{
+    int count = 0;
+}
+<div class="container mt-5">
+    <div class="row d-flex justify-content-between">
+        <div>
+            Create a new Banner static
+        </div>
+        <div>
+            <a asp-controller="bannerstatic" asp-action="create" class="btn btn-success">+ Add</a>
+        </div>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">BannerSubtitle</th>
+                    <th scope="col">BannerTitle1</th>
+                    <th scope="col">BannerTitle2</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Update or delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (BannerStatic bannerStatic in Model)
+                {
+                    count++;
+                    <tr>
+                        <th scope="row">@count</th>
+                        <td>@bannerStatic.BannerSubtitle</td>
+                        <td>@bannerStatic.BannerTitle1</td>
+                        <td>@bannerStatic.BannerTitle2</td>
+                        <td><img style="max-width:150px;max-height:150px;" src="~/uploads/bannerstatics/@bannerStatic.ImgUrl" /></td>
+                        <td>
+                            <a asp-controller="bannerstatic" asp-action="update" asp-route-id="@bannerStatic.Id" class="btn btn-primary">Update</a>
+                            <a asp-controller="bannerstatic" asp-action="delete" asp-route-id="@bannerStatic.Id" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

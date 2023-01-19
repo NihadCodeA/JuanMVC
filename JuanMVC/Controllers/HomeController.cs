@@ -1,6 +1,7 @@
 ﻿using JuanMVC.Models;
 using JuanMVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace JuanMVC.Controllers
 {
@@ -17,6 +18,8 @@ namespace JuanMVC.Controllers
             {
                 Sliders = _context.Sliders.ToList(),
                 BannerProducts = _context.BannerProducts.ToList(),
+                Products = _context.Products.Include(x=>x.ProductImages).ToList(),
+                BannerStatics = _context.BannerStatics.ToList(),
             };
             return View(homeViewModel);
         }

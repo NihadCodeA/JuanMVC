@@ -11,6 +11,7 @@ namespace JuanMVC.Models
         public DbSet<BannerProduct> BannerProducts { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<BannerStatic> BannerStatics { get; set; }
 
     }
 }

@@ -47,6 +47,34 @@ namespace JuanMVC.Migrations
                     b.ToTable("BannerProducts");
                 });
 
+            modelBuilder.Entity("JuanMVC.Models.BannerStatic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("BannerSubtitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BannerTitle1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BannerTitle2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImgUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BannerStatics");
+                });
+
             modelBuilder.Entity("JuanMVC.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -72,9 +100,6 @@ namespace JuanMVC.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PosterImgUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("SalePrice")
                         .HasColumnType("float");
 
@@ -87,7 +112,7 @@ namespace JuanMVC.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("JuanMVC.Models.ProductImages", b =>
+            modelBuilder.Entity("JuanMVC.Models.ProductImage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -151,7 +176,7 @@ namespace JuanMVC.Migrations
                     b.ToTable("Sliders");
                 });
 
-            modelBuilder.Entity("JuanMVC.Models.ProductImages", b =>
+            modelBuilder.Entity("JuanMVC.Models.ProductImage", b =>
                 {
                     b.HasOne("JuanMVC.Models.Product", "Product")
                         .WithMany("ProductImages")

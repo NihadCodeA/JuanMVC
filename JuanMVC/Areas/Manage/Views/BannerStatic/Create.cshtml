@@ -1,0 +1,35 @@
+﻿@model BannerStatic
+<div class="container mt-5">
+    <div class="row">
+        <form method="post" asp-controller="bannerstatic" asp-action="create" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="BannerSubtitle" class="form-label">BannerSubtitle</label>
+                    <input asp-for="BannerSubtitle" class="form-control" placeholder="BannerSubtitle" />
+                    <span asp-validation-for="BannerSubtitle" class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    <label asp-for="BannerTitle1" class="form-label">BannerTitle1</label>
+                    <input asp-for="BannerTitle1" class="form-control" placeholder="BannerTitle1" />
+                    <span asp-validation-for="BannerTitle1" class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    <label asp-for="BannerTitle2" class="form-label">BannerTitle2</label>
+                    <input asp-for="BannerTitle2" class="form-control" placeholder="BannerTitle2" />
+                    <span asp-validation-for="BannerTitle2" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                @*<div class="mb-3 col-12">
+                    <label asp-for="Description" class="form-label">Description"</label>
+                    <textarea asp-for="Description" class="form-control" placeholder="Description"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+
+                </div>*@
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

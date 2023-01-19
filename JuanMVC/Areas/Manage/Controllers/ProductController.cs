@@ -30,7 +30,7 @@ namespace JuanMVC.Areas.Manage.Controllers
         public IActionResult Create(Product product)
         {
             if (product == null) return NotFound();
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid) return View(product);
 
             if(product.PosterImgFile== null)
             {
@@ -71,7 +71,7 @@ namespace JuanMVC.Areas.Manage.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            Product product = _context.Products.FirstOrDefault(x => x.Id == id);
+            Product product = _context.Products.Include(x => x.ProductImages).FirstOrDefault(x => x.Id == id);
             if (product == null) return NotFound();
             return View(product);
         }
@@ -81,13 +81,27 @@ namespace JuanMVC.Areas.Manage.Controllers
             Product existProduct=_context.Products.Include(x=>x.ProductImages).FirstOrDefault(x=>x.Id==product.Id);
             if (existProduct == null) return NotFound();
             if (!ModelState.IsValid) return View();
-
-            if (product.PosterImgFile == null)
+            if (product.ProductImageFiles== null && product.ProductImgIds == null)
             {
-                ModelState.AddModelError("PosterImgFile", "Sekil yuklemeden product yarada bilmersiz!");
+                ModelState.AddModelError("ProductImageFiles", "product sekilleri bos ola bilmez!");
+                return View(existProduct);
+            }
+            if (product.ProductImgIds != null)
+            {
+                existProduct.ProductImages.RemoveAll(x => !product.ProductImgIds.Contains(x.Id) && x.IsPoster == false);
             }
             else
             {
+                existProduct.ProductImages.RemoveAll(x=>x.IsPoster == false);
+            }
+            if (product.PosterImgFile == null)
+            {
+                ModelState.AddModelError("PosterImgFile", "Sekil yuklemeden product yarada bilmersiz!");
+            } 
+            else
+            {
+                FileManager.DeleteFile(_env.WebRootPath, "uploads/productimages", 
+                existProduct.ProductImages.FirstOrDefault(x=>x.IsPoster==true).ImageUrl);
                 ProductImage posterImage = new ProductImage
                 {
                     Product = product,
@@ -95,23 +109,20 @@ namespace JuanMVC.Areas.Manage.Controllers
                     IsPoster = true
                 };
                 existProduct.ProductImages.FirstOrDefault(x => x.IsPoster == true).ImageUrl = posterImage.ImageUrl;
-
             }
-            if (product.ProductImageFiles == null)
+            if (product.ProductImageFiles != null)
             {
-                ModelState.AddModelError("ProductImageFiles", "Sekil yuklemeden product yarada bilmersiz!");
-            }
-            else
-            {
-                foreach (var productImage in product.ProductImageFiles)
+                foreach (var productImageFile in product.ProductImageFiles)
                 {
+                //    FileManager.DeleteFile(_env.WebRootPath, "uploads/productimages",
+                //existProduct.ProductImages.FirstOrDefault(x => x.IsPoster == false).ImageUrl);
                     ProductImage productImg = new ProductImage
                     {
                         Product = product,
-                        ImageUrl = FileManager.SaveFile(_env.WebRootPath, "uploads/productimages", productImage),
+                        ImageUrl = FileManager.SaveFile(_env.WebRootPath, "uploads/productimages", productImageFile),
                         IsPoster = false
                     };
-                    existProduct.ProductImages.FirstOrDefault(x => x.IsPoster == false).ImageUrl = productImg.ImageUrl;
+                    existProduct.ProductImages.Add(productImg);
                 }
             }
             existProduct.Name= product.Name;

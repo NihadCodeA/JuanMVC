@@ -16,7 +16,10 @@ namespace JuanMVC.Models
         [NotMapped]
         public IFormFile? PosterImgFile { get; set; }
         public List<ProductImage>? ProductImages { get; set; }
+
         [NotMapped]
+        public List<int>? ProductImgIds { get; set; }
+        [NotMapped] 
         public List<IFormFile>? ProductImageFiles { get; set; }
     }
 }

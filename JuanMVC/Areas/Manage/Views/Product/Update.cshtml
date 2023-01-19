@@ -53,9 +53,20 @@
                     <label asp-for="ProductImageFiles" class="form-label">ProductImageFiles</label>
                     <input asp-for="ProductImageFiles" multiple class="form-control" />
                     <span asp-validation-for="ProductImageFiles" class="text-danger"></span>
+                   <div class="d-flex flex-wrap">
+                        @foreach (var img in Model.ProductImages.Where(x => x.IsPoster == false))
+                        {
+                            <div class="mx-3 position-relative" style="max-width:100px;max-height:100px;">
+                                <img class="w-100 h-100" src="~/uploads/productimages/@img.ImageUrl" />
+                                <span class="text-danger removeProductImgBtn" style="position:absolute;top:5px;right:0;cursor:pointer;font-weight:bold;">X</span>
+                                <span asp-validation-for="ProductImageFiles"></span>
+                                <input hidden name="ProductImgIds" value="@img.Id" />
+                            </div>
+                        }
+                   </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </div>
